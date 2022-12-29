@@ -23,9 +23,12 @@ for k = 1:n
         throw(ME)
     end
 
-    for i = k+1:n
-        L(i,k) = (A(i,k) - sum(L(i,1:k-1).*L(k,1:k-1)))/L(k,k);
-    end
+    %for i = k+1:n
+    %    L(i,k) = (A(i,k) - sum(L(i,1:k-1).*L(k,1:k-1)))/L(k,k);
+    %end
+
+    L(k+1:n,k) = (A(k+1:n,k) - squeeze(sum(L(k+1:n,1:k-1).*L(k,1:k-1), 2)))/L(k,k);
+    
 end
 
 

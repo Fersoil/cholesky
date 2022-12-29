@@ -4,14 +4,18 @@ function [X] = solve_chol(A,B)
 % macierz B o m kolumnach i n wierszach
 % funkcja zwraca macierz X o m kolumnach i n wierszach będącą rozwiązaniem
 % równania AX = B
-% wyznaczoną za pomocą funkcji cholesky i dekompozycji
+% wyznaczoną za pomocą funkcji cholesky, czyli przy użyciu dekompozycji
 % Cholesky-Banachiewicza
 
-
+% szukamy takiego L, że LL' = A
 L = cholesky(A);
 
-Y = solve_downtriangular(L, B);
+% rozwiązujemy układ równań LY = B
+Y = solve_triangular(L, B, "lower");
 
-X = solve_uptriangular(L', Y);
+% rozwiązujemy układ równań L'X = Y
+X = solve_triangular(L', Y, "upper");
+
+% wówczas X spełnia równanie L(L'X) = LY = B
 
 end

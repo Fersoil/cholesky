@@ -27,7 +27,7 @@ g = @() solve_chol(A, B);
 
 f = @() solve_matlab(A,B); 
     
-timeit(g),timeit(f)
+timeit(g),timeit(f) % mierzymy czas działania funkcji
 
 %% przykład 3
 
@@ -49,8 +49,13 @@ plot_diff("gcdmat", "integerdata", @(n){n}, @(n,m){10,[n, m], 4}, 4)
 
 plot_diff("gcdmat", "integerdata", @(n){n}, @(n,m){100,[n, m], 4}, 100)
 
+%% przyklad 4.1 
+% wykres czasu
 
-%% przykład 4
+plot_chol("gcdmat",@(n){n}, 100)
+
+
+%% przykład 6
 
 A = gallery('lehmer', 100);
 
@@ -58,20 +63,25 @@ B = gallery('normaldata',100,200,44);
 
 plot_diff("lehmer", "normaldata", @(n){n}, @(n,m){n, m, 44}, 100)
 
+
 check_example(A, B)
 
-%% przykład 5
+%% przyklad 6.1 
+% wykres czasu
+
+plot_chol("lehmer",@(n){n}, 100)
+
+%% przykład 
 
 A = gallery('kms',100,0.66) 
 
 B = gallery('normaldata',100,200,44);
 
-
 plot_diff("kms", "normaldata", @(n){n, 0.66}, @(n,m){n, m, 44}, 200, 200)
 
 check_example(A, B)
 
-%% przykład 6
+%% przykład
 
 A = gallery('minij',1000);
 
@@ -92,11 +102,22 @@ B = gallery('normaldata',100,200,44);
 
 plot_diff("tridiag", "normaldata", @(n){n}, @(n,m){n, m, 44}, 200, 500)
 
+
+%% przyklad 7.1 
+% wykres czasu
+
+plot_chol("tridiag",@(n){n}, 500)
+
+
 %% przyklad 8
+
+% wykres czasu działania funkcji
 plot_time("lehmer", "normaldata", @(n){n}, @(n,m){n, m, 44}, 100)
 
 
 %% przyklad 9
+
+% wykres czasu działania funkcji
 plot_time("tridiag", "normaldata", @(n){n}, @(n,m){n, m, 44}, 100, 500)
 
 
